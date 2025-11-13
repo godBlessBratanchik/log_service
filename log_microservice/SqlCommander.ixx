@@ -31,6 +31,7 @@ private:
 
 SqlCommander::SqlCommander() 
 {
+    // Заполнение данными бд
     auto env = load_env("config.env");
 
     host_ = env.at("HOST");

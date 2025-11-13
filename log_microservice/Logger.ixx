@@ -22,6 +22,7 @@ public:
 	template <typename ... Args>
 	void log(fmt::format_string<Args...> fmt_str, Args&&... args)
 	{
+		// Принимаем любые типы и отправляем запрос к бд
 		sql.send_log(std::to_string(std::time(nullptr)), std::forward<Args>(args)...);
 	}
 };
