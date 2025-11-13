@@ -1,4 +1,9 @@
 ./log_microservice/config.env
+*.sln
+*.vcxproj.user
+*.vcxproj.filters
+*.vcxproj
+
 
 ##### Windows
 # Windows thumbnail cache files
