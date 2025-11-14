@@ -1,16 +1,36 @@
 ﻿#include <iostream>
+#include <memory>
 
-import Logger;
-import SqlCommander;
-import APIGateway;
+#include "Logger.h";
+#include "SqlCommander.h";
+#include "APIGateway.h";
+#include "HTTPServer.h";
 
 int main()
 {
-	// Каароч, мне в падлу пока что все это соединять.
-	// У меня есть готовые более менее логи и запросы к бд,
-	// но у меня нет нормальной апишки для связи с брокером.
-	// 
-	// Поэтому принято решение забить. Код написан, самое главное,
-	// как раз после сдачи работы, разберусь получше в брокере
-	// и что за говно написано у меня.
+	try {
+		Logger logger;
+		logger.info("Application started");
+
+		HTTPServer http_server(8080);
+		http_server.start();
+
+		logger.info("HTTP server started successfully");
+
+		http_server.register_handler("/logs", "GET",
+			[&logger](const json& req) {
+				return json{};
+			});
+
+		logger.info("Handlers registered");
+
+		http_server.stop();
+		logger.info("Application shutting down");
+	}
+	catch (const std::exception& e) {
+		std::cerr << "Error: " << e.what() << "\n";
+		return 1;
+	}
+
+	return 0;
 }

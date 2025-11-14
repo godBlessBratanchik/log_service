@@ -128,13 +128,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="APIGateway.ixx" />
-    <ClCompile Include="Logger.ixx" />
+    <ClCompile Include="APIGateway.cpp" />
+    <ClCompile Include="HTTPServer.cpp" />
+    <ClCompile Include="Logger.cpp" />
     <ClCompile Include="log_microservice.cpp" />
-    <ClCompile Include="SqlCommander.ixx" />
+    <ClCompile Include="SqlCommander.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config.env" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="APIGateway.h" />
+    <ClInclude Include="HTTPServer.h" />
+    <ClInclude Include="Logger.h" />
+    <ClInclude Include="SqlCommander.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
