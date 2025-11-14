@@ -31,7 +31,8 @@ void HTTPServer::register_handler(const std::string& path, const std::string& me
 
 json HTTPServer::handle_get_logs(const json& request)
 {
-	return {
+	return 
+	{
 		{"status", "success"},
 		{"data", json::array()}
 	};
@@ -39,7 +40,8 @@ json HTTPServer::handle_get_logs(const json& request)
 
 json HTTPServer::handle_get_status(const json& request)
 {
-	return {
+	return 
+	{
 		{"status", "ok"},
 		{"timestamp", std::time(nullptr)}
 	};
@@ -47,14 +49,17 @@ json HTTPServer::handle_get_status(const json& request)
 
 json HTTPServer::handle_create_log(const json& request)
 {
-	if (!request.contains("message")) {
-		return {
+	if (!request.contains("message")) 
+	{
+		return 
+		{
 			{"status", "error"},
 			{"message", "Missing required field: message"}
 		};
 	}
 
-	return {
+	return 
+	{
 		{"status", "success"},
 		{"message", "Log entry created"}
 	};

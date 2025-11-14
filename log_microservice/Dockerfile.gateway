@@ -1,0 +1,17 @@
+FROM mcr.microsoft.com/cpp/dev:latest
+
+WORKDIR /app
+
+COPY . .
+
+RUN apt-get update && apt-get install -y \
+    librdkafka-dev \
+    nlohmann-json3-dev \
+    libfmt-dev
+
+RUN g++ -std=c++20 -fmodules-ts -O2 main.cpp APIGateway.cpp HTTPServer.cpp Logger.cpp SqlCommander.cpp -o app \
+    -lrdkafka++ -lrdkafka -lpq
+
+EXPOSE 8080
+
+CMD ["./app"]
