@@ -133,6 +133,7 @@
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="log_microservice.cpp" />
     <ClCompile Include="SqlCommander.cpp" />
+    <ClCompile Include="Tests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config.env" />
