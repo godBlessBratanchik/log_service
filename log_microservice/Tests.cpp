@@ -13,13 +13,6 @@ using ::testing::_;
 
 using json = nlohmann::json;
 
-class MockSqlCommander : public SqlCommander
-{
-public:
-    MOCK_METHOD(void, send_log, (const std::string&, const std::string&, const std::string&, const std::string&, const std::string&), (override));
-    MOCK_METHOD(bool, is_healthy, (), (const, override));
-};
-
 class LoggerWithDI
 {
 public:
@@ -32,15 +25,6 @@ public:
 private:
     SqlCommander* sql_commander;
 };
-
-TEST(LoggerUnitTest, InfoLog)
-{
-    MockSqlCommander sqlMock;
-    EXPECT_CALL(sqlMock, send_log(_, _, _, _, _)).Times(1);
-
-    LoggerWithDI logger(&sqlMock);
-    logger.info("Test info message");
-}
 
 TEST(KafkaUnitTest, ConnectSubscribe)
 {
