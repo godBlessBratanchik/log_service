@@ -1,0 +1,26 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y cmake g++ libpq-dev librdkafka-dev nlohmann-json3-dev libfmt-dev
+
+      - name: Build
+        run: |
+          cmake -Bbuild -H.
+          cmake --build build
+
+      - name: Build Docker image
+        run: docker build -t my-microservice .
